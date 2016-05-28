@@ -44,6 +44,13 @@ WEnd
 
 ;~  - - - FUNCTIONS - - -
 
+;~ Description : 	Draws a triangular mask at the couple ($iX;$iY) coordinate on a graph.
+;~ Arguments : 		$hGraph is the handle of a Graphic Object.
+;~ 					$hPen is the handle of a Pen Object.
+;~ 					$iX is the X coordinate where the triangular mask has to be drawn.
+;~ 					$iY is the Y coordinate where the triangular mask has to be drawn.
+;~ 					$fScale is scaling coefficient.
+;~ Author : 		blacksoul305
 Func _DrawTriangularMask($hGraph, $hPen, $iX, $iY, $fScale = 1)
 	Local $aFigPoints[5][2] = [ [4, 4], _
 								[($iX - ($fScale * $i_TRG_TOP/2)), $iY], _
@@ -53,6 +60,13 @@ Func _DrawTriangularMask($hGraph, $hPen, $iX, $iY, $fScale = 1)
 	_GDIPlus_GraphicsDrawPolygon($hGraph, $aFigPoints, $hPen)
 EndFunc
 
+;~ Description : 	Draws the hologram mask at the couple ($iX;$iY) coordinate on a graph.
+;~ Arguments : 		$hGraph is the handle of a Graphic Object.
+;~ 					$hPen is the handle of a Pen Object.
+;~ 					$iX is the X coordinate where the hologram mask has to be drawn.
+;~ 					$iY is the Y coordinate where the hologram mask has to be drawn.
+;~ 					$fScale is scaling coefficient.
+;~ Author : 		blacksoul305
 Func _DrawHologramMask($hGraph, $hPen, $iX, $iY, $fScale = 1)
 	Local $hMatrix, $hBitmap, $hTmpGraph
 	$hMatrix = _GDIPlus_MatrixCreate() ; creates a transformation matrix (identity)
