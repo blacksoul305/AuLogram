@@ -25,6 +25,7 @@ GUISetState(@SW_SHOW)
 
 $hGDIMatrix = _GDIPlus_MatrixCreate()
 $hGDIPen = _GDIPlus_PenCreate(0xFFFFFFFF) ; white pen
+_GDIPlus_GraphicsClear($hGDIGraph)
 
 While 1
 	$nMsg = GUIGetMsg()
@@ -34,9 +35,9 @@ While 1
 			_GDIPlus_PenDispose($hGDIPen)
 			_GDIPlus_Shutdown()
 			Exit
-		Case $GUI_EVENT_PRIMARYDOWN
+		Case $GUI_EVENT_PRIMARYDOWN ; Left-mouse button clears the graphic.
 			_GDIPlus_GraphicsClear($hGDIGraph)
-		Case $GUI_EVENT_SECONDARYDOWN
+		Case $GUI_EVENT_SECONDARYDOWN ; Right-mouse button draws the hologram patron.
 			_DrawHologramMask($hGDIGraph, $hGDIPen, $i_WIN_WIDTH/2, $i_WIN_HEIGHT/2, 2.5)
 	EndSwitch
 WEnd
@@ -55,7 +56,7 @@ EndFunc
 Func _DrawHologramMask($hGraph, $hPen, $iX, $iY, $fScale = 1)
 	Local $hMatrix, $hBitmap, $hTmpGraph
 	$hMatrix = _GDIPlus_MatrixCreate() ; creates a transformation matrix (identity)
-	_GDIPlus_MatrixTranslate($hMatrix,$iX, $iY)
+	_GDIPlus_MatrixTranslate($hMatrix,$iX + $fScale * ($i_TRG_TOP/2), $iY + $fScale * ($i_TRG_TOP/2))
 	For $i = 0 To 3
 		Switch $i
 			Case 0
