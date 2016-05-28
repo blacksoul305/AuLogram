@@ -1,2 +1,2 @@
 # AuLogram
-An  AutoIt script that permits to display an hologram from an a simple image.
+An  AutoIt script that permits to display an hologram from a simple image.
